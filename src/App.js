@@ -9,11 +9,11 @@ import CategoryPage from "./Pages/CategoryPage";
 
 export default function App() {
     const { fetchBlogPosts } = useContext(AppContext);
-
+    // eslint-disable-next-line
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
 
-    const {isDarkMode} = useContext(AppContext)
+    const { isDarkMode } = useContext(AppContext);
 
     useEffect(() => {
         const page = searchParams.get("page") ?? 1; // ?? means by default
@@ -34,16 +34,20 @@ export default function App() {
         } else {
             fetchBlogPosts(Number(page));
         }
+        // eslint-disable-next-line
     }, [location.pathname, location.search]);
 
     return (
-        <div className={`w-full min-h-screen ${isDarkMode ? "dark": "light"}`}>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blog/:blogId" element={<BlogPage />} />
-            <Route path="/tags/:tag" element={<TagPage />} />
-            <Route path="/categories/:category" element={<CategoryPage />} />
-        </Routes>
+        <div className={`w-full min-h-screen ${isDarkMode ? "dark" : "light"}`}>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/blog/:blogId" element={<BlogPage />} />
+                <Route path="/tags/:tag" element={<TagPage />} />
+                <Route
+                    path="/categories/:category"
+                    element={<CategoryPage />}
+                />
+            </Routes>
         </div>
     );
 }
